@@ -1,16 +1,71 @@
  
 Aplication for Filter Bittorrent Traffic
 
-What I do is use the bandwidth monitor on the App and when you see something odd; like a high level of bandwidth coming from someones machine that should otherwise be have average or normal usage, I type the PC name into the App, go to its page, and view the running processes.
+
+The three main ways in which I see BitTorrent been used:
+
+   1-Standard BitTorrent clients downloading data directing from other clients on the BitTorrent networks. 
+   For the purposes of this blog article, I am going to focus on detecting this activity as it is the most popular way 
+   BitTorrent is used.
+   
+   2-The use of external proxies which allow for the tunnelling of BitTorrent over ports like TCP 22, 80 or 443. 
+   This form of tunnelling is used when firewalls are used to block all but the standard ports on the perimeter of networks. 
+   An external proxy server is used to handle the download requests between the client behind the firewall, 
+   and other clients on the BitTorrent network.
+   
+   3-Remote control of systems on open networks. Individuals who may find themselves on networks which block BitTorrent 
+   may use systems on other networks run BitTorrent clients. For example, I may have access to use BitTorrent 
+   on my home network but it is blocked at my place of work. To get access to the data I downloaded at home in the workplace, 
+   I could use a remote control client which can tunnel this data into the workplace. 
+   Some applications have been designed specifically for this task. To monitor for this type of activity I recommend that you 
+   keep an eye on the top users on bandwidth on your network.
+
+
+   For packet capture, you just need mirror the switch port which connects your firewall to the network core or 
+   other local switch.  For flow capture you need to look at capturing flow records 
+   from a switch or router inside your network. What I mean by this is the flow records need to show 
+   what systems are making connections, no point in monitoring the external interfaces on your firewalls as 
+   they may show the firewall as the source of all connections.
+
+   Once you have monitoring in place you need to look at two things. The first is to look for any clients 
+   connecting to systems outside your network on high port numbers. This is unusual as normal web browsing will be 
+   on ports 80(HTTP) and 443(HTTPS). A connection from a local system to an external one over something like port 10321 
+   would be unusual. Also look out systems which are uploading a lot of data. Normally we download a lot more data than 
+   we would upload when accessing web pages. Client systems which upload a lot of data are sharing something.
+
+
+
+
+What I do is use the bandwidth monitor on the App and when you see something odd; like a high level of bandwidth 
+coming from someones machine that should otherwise be have average or normal usage, 
+I type the PC name into the App, go to its page, and view the running processes.
 
 This will show bittorrent.exe and will also show you file names of what they are downloading.
 
+There are various detection techniques, and for obvious reasons ISPs aren't super transparent about it, 
+but in general BitTorrent has fairly obvious usage patterns - having lots of connections open at once, 
+regularly sending packets of very specific sizes (the ones containing the keepalives), 
+transferring lots of data in both directions simultaneously, etc.
+
+That's just for TCP-based BitTorrent. For newfangled UDP-based BitTorrent, 
+which is most of it these days, it's even easier to detect since almost all UDP traffic is BitTorrent. 
+That said, the uTP protocol (our swap-in UDP-based replacement for TCP) is intentionally very good about backing off 
+when the ISP is in danger of becoming overloaded, so ISPs probably don't worry much about forcing that traffic to back off, 
+although they never make their opinions or policies about these things very clear.
 
 
 
- Check your firewall logs.  If you see multiple inbound TCP or UDP connections within the same port range to a single IP you'll have found the culprit.
 
-Example UDP
+
+
+
+
+
+Some Tips:
+ Check your firewall logs.  If you see multiple inbound TCP or UDP connections within the same port range to 
+ a single IP you'll have found the culprit.
+
+-Example UDP
 
 UDP out 71.154.11.107:51852 in 172.16.5.20:51000 idle 0:00:35 flags
 UDP out 78.92.83.240:11056 in 172.16.5.20:51000 idle 0:01:50 flags
@@ -19,7 +74,7 @@ UDP out 81.62.74.39:6881 in 172.16.5.20:51000 idle 0:00:23 flags
 UDP out 188.123.252.109:23291 in 172.16.5.20:51000 idle 0:01:20 flags
 UDP out 121.54.16.142:41549 in 172.16.5.20:51000 idle 0:01:52 flags
 
-Example TCP
+-Example TCP
 
 TCP out 85.226.235.211:61024 in 172.16.2.49:47749 idle 0:00:00 Bytes 5691 flags UIO
 TCP out 121.54.32.148:40636 in 172.16.2.49:42765 idle 0:01:19 Bytes 0 flags saA
