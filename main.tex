@@ -1,139 +1,180 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% LaTeX Example: Project Report
-%
-% Source: http://www.howtotex.com
-%
-% Feel free to distribute this example, but please keep the referral
-% to howtotex.com
-% Date: March 2011 
-% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% How to use writeLaTeX: 
-%
-% You edit the source code here on the left, and the preview on the
-% right shows you the result within a few seconds.
-%
-% Bookmark this page and share the URL with your co-authors. They can
-% edit at the same time!
-%
-% You can upload figures, bibliographies, custom classes and
-% styles using the files menu.
-%
-% If you're new to LaTeX, the wikibook is a great place to start:
-% http://en.wikibooks.org/wiki/LaTeX
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Edit the title below to update the display in My Documents
-%\title{Project Report}
-%
-%%% Preamble
-\documentclass[paper=a4, fontsize=11pt]{scrartcl}
-\usepackage[T1]{fontenc}
-\usepackage{fourier}
+%% This is file `elsarticle-template-1-num.tex',
+%%
+%% Copyright 2009 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%%
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%%
+%% Template article for Elsevier's document class `elsarticle'
+%% with numbered style bibliographic references
+%%
+%% $Id: elsarticle-template-1-num.tex 149 2009-10-08 05:01:15Z rishi $
+%% $URL: http://lenova.river-valley.com/svn/elsbst/trunk/elsarticle-template-1-num.tex $
+%%
+\documentclass[preprint,12pt]{elsarticle}
 
-\usepackage[english]{babel}															% English language/hyphenation
-\usepackage[protrusion=true,expansion=true]{microtype}	
-\usepackage{amsmath,amsfonts,amsthm} % Math packages
-\usepackage[pdftex]{graphicx}	
-\usepackage{url}
+%% Use the option review to obtain double line spacing
+%% \documentclass[preprint,review,12pt]{elsarticle}
 
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
 
-%%% Custom sectioning
-\usepackage{sectsty}
-\allsectionsfont{\centering \normalfont\scshape}
+%% The graphicx package provides the includegraphics command.
+\usepackage{graphicx}
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
 
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers after \end{frontmatter}.
+\usepackage{lineno}
 
-%%% Custom headers/footers (fancyhdr package)
-\usepackage{fancyhdr}
-\pagestyle{fancyplain}
-\fancyhead{}											% No page header
-\fancyfoot[L]{}											% Empty 
-\fancyfoot[C]{}											% Empty
-\fancyfoot[R]{\thepage}									% Pagenumbering
-\renewcommand{\headrulewidth}{0pt}			% Remove header underlines
-\renewcommand{\footrulewidth}{0pt}				% Remove footer underlines
-\setlength{\headheight}{13.6pt}
+%% natbib.sty is loaded by default. However, natbib options can be
+%% provided with \biboptions{...} command. Following options are
+%% valid:
 
+%%   round  -  round parentheses are used (default)
+%%   square -  square brackets are used   [option]
+%%   curly  -  curly braces are used      {option}
+%%   angle  -  angle brackets are used    <option>
+%%   semicolon  -  multiple citations separated by semi-colon
+%%   colon  - same as semicolon, an earlier confusion
+%%   comma  -  separated by comma
+%%   numbers-  selects numerical citations
+%%   super  -  numerical citations as superscripts
+%%   sort   -  sorts multiple citations according to order in ref. list
+%%   sort&compress   -  like sort, but also compresses numerical citations
+%%   compress - compresses without sorting
+%%
+%% \biboptions{comma,round}
 
-%%% Equation and float numbering
-\numberwithin{equation}{section}		% Equationnumbering: section.eq#
-\numberwithin{figure}{section}			% Figurenumbering: section.fig#
-\numberwithin{table}{section}				% Tablenumbering: section.tab#
+% \biboptions{}
 
+\journal{Journal Name}
 
-%%% Maketitle metadata
-\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
-
-\title{
-		%\vspace{-1in} 	
-		\usefont{OT1}{bch}{b}{n}
-		\normalfont \normalsize \textsc{School of random department names} \\ [25pt]
-		\horrule{0.5pt} \\[0.4cm]
-		\huge This is the title of the template report \\
-		\horrule{2pt} \\[0.5cm]
-}
-\author{
-		\normalfont 								\normalsize
-        Firstname Lastname\\[-3pt]		\normalsize
-        \today
-}
-\date{}
-
-
-%%% Begin document
 \begin{document}
-\maketitle
-\section{Heading on level 1 (section)}
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus:
-\begin{align} 
-	\begin{split}
-	(x+y)^3 	&= (x+y)^2(x+y)\\
-					&=(x^2+2xy+y^2)(x+y)\\
-					&=(x^3+2x^2y+xy^2) + (x^2y+2xy^2+y^3)\\
-					&=x^3+3x^2y+3xy^2+y^3
-	\end{split}					
-\end{align}
-Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies 
 
-\subsection{Heading on level 2 (subsection)}
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-\begin{align}
-	A = 
-	\begin{bmatrix}
-	A_{11} & A_{21} \\
-  	A_{21} & A_{22}
-	\end{bmatrix}
-\end{align}
-Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+\begin{frontmatter}
 
-\subsubsection{Heading on level 3 (subsubsection)}
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+%% Title, authors and addresses
 
-\paragraph{Heading on level 4 (paragraph)}
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
+\title{Forensics Cyber-Security}
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for the associated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for the associated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for the associated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%%
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \address{Address\fnref{label3}}
+%% \fntext[label3]{}
 
 
-\section{Lists}
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{<author name>}
+%% \address[label1]{<address>}
+%% \address[label2]{<address>}
 
-\subsection{Example for list (3*itemize)}
-\begin{itemize}
-	\item First item in a list 
-		\begin{itemize}
-		\item First item in a list 
-			\begin{itemize}
-			\item First item in a list 
-			\item Second item in a list 
-			\end{itemize}
-		\item Second item in a list 
-		\end{itemize}
-	\item Second item in a list 
-\end{itemize}
+\author{André Dias}
+\author{Miguel Amaral}
+\author{Nabil Assan}
 
-\subsection{Example for list (enumerate)}
-\begin{enumerate}
-	\item First item in a list 
-	\item Second item in a list 
-	\item Third item in a list
-\end{enumerate}
-%%% End document
+\address{Instituto Superior Técnico}
+
+\begin{abstract}
+%% Text of abstract
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam commodo feugiat tortor, ac tristique ligula. Maecenas dignissim posuere faucibus. Donec varius sapien sit amet lacus consectetur lobortis. Donec molestie molestie arcu, vitae vehicula sapien ultricies ut. Proin vitae dapibus sapien. Vestibulum id lorem sem. Quisque lacinia, odio non euismod euismod, justo nunc feugiat arcu, venenatis mattis mi augue at justo. Phasellus sed blandit orci, rutrum gravida dui. Pellentesque posuere, odio et congue gravida, lectus nulla blandit mi, nec tempus est risus eget turpis. Praesent eget efficitur erat. Nulla ut quam imperdiet, vehicula nisi eu, congue enim. Suspendisse scelerisque lectus tellus, id vestibulum lacus scelerisque ut. Ut pretium maximus libero, placerat semper velit sodales eget. Etiam auctor purus non erat bibendum elementum. Duis at sagittis tortor.
+\end{abstract}
+
+\begin{keyword}
+Science \sep Publication \sep Complicated
+%% keywords here, in the form: keyword \sep keyword
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
+
+%%
+%% Start line numbering here if you want
+%%
+\linenumbers
+
+%% main text
+\section{The First Section}
+Morbi quam neque, elementum id convallis quis, gravida ac lectus. Phasellus in justo ut ante malesuada tempor. Curabitur vehicula, tellus ut pretium iaculis, lectus nisi faucibus ligula, at lacinia libero felis quis tellus. Duis ultricies nulla dapibus posuere porta. Curabitur at risus mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus fringilla sapien non vehicula elementum. In maximus ac metus at tempus.
+
+Sed in purus eu elit tincidunt vestibulum quis nec turpis. Vestibulum leo ante, viverra vitae tortor a, accumsan facilisis magna. Nam sagittis eros orci, vitae mollis est sodales ac. Fusce rutrum neque nec augue ultricies luctus. Suspendisse molestie orci erat, vitae posuere lacus volutpat id. Nullam metus enim, tincidunt ac tellus a, ultricies vehicula lectus. Ut a augue nec enim dapibus tempor. Donec volutpat, mauris a semper placerat, ipsum enim facilisis elit, ac finibus augue libero efficitur tellus. Cras leo lorem, porta et sem a, hendrerit laoreet est.
+
+Integer eu bibendum sem. Quisque quis erat sem. Fusce tincidunt nisl nisi, nec gravida ipsum ornare vitae. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent consectetur ultricies metus ac blandit. Donec lorem metus, lobortis ut enim ornare, tincidunt molestie elit. Praesent id sapien ac elit scelerisque scelerisque ac eget nunc. Proin eu dolor nec magna feugiat rhoncus quis pulvinar purus.
+
+Proin quam arcu, lobortis at risus vestibulum, semper iaculis erat. In viverra nibh vel urna auctor, vel rhoncus turpis lobortis. Donec libero tortor, tempor quis suscipit in, porta ut nisl. Mauris ultrices placerat lectus ut efficitur. Integer euismod feugiat magna, quis vehicula nisl viverra a. Cras sodales ipsum ac libero suscipit convallis. Etiam porta justo quis massa luctus luctus.
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+%% \appendix
+
+%% \section{}
+%% \label{}
+
+%% References
+%%
+%% Following citation commands can be used in the body text:
+%% Usage of \cite is as follows:
+%%   \cite{key}          ==>>  [#]
+%%   \cite[chap. 2]{key} ==>>  [#, chap. 2]
+%%   \citet{key}         ==>>  Author [#]
+
+%% References with bibTeX database:
+
+\bibliographystyle{model1-num-names}
+\bibliography{sample.bib}
+
+%% Authors are advised to submit their bibtex database files. They are
+%% requested to list a bibtex style file in the manuscript if they do
+%% not want to use model1-num-names.bst.
+
+%% References without bibTeX database:
+
+% \begin{thebibliography}{00}
+
+%% \bibitem must have the following form:
+%%   \bibitem{key}...
+%%
+
+% \bibitem{}
+
+% \end{thebibliography}
+
+
 \end{document}
+
+%%
+%% End of file `elsarticle-template-1-num.tex'.
