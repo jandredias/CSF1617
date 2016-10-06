@@ -1,0 +1,30 @@
+ 
+Aplication for Filter Bittorrent Traffic
+
+What I do is use the bandwidth monitor on the App and when you see something odd; like a high level of bandwidth coming from someones machine that should otherwise be have average or normal usage, I type the PC name into the App, go to its page, and view the running processes.
+
+This will show bittorrent.exe and will also show you file names of what they are downloading.
+
+
+
+
+ Check your firewall logs.  If you see multiple inbound TCP or UDP connections within the same port range to a single IP you'll have found the culprit.
+
+Example UDP
+
+UDP out 71.154.11.107:51852 in 172.16.5.20:51000 idle 0:00:35 flags
+UDP out 78.92.83.240:11056 in 172.16.5.20:51000 idle 0:01:50 flags
+UDP out 24.199.60.10:58567 in 172.16.5.20:51000 idle 0:00:17 flags
+UDP out 81.62.74.39:6881 in 172.16.5.20:51000 idle 0:00:23 flags
+UDP out 188.123.252.109:23291 in 172.16.5.20:51000 idle 0:01:20 flags
+UDP out 121.54.16.142:41549 in 172.16.5.20:51000 idle 0:01:52 flags
+
+Example TCP
+
+TCP out 85.226.235.211:61024 in 172.16.2.49:47749 idle 0:00:00 Bytes 5691 flags UIO
+TCP out 121.54.32.148:40636 in 172.16.2.49:42765 idle 0:01:19 Bytes 0 flags saA
+TCP out 85.226.235.211:61024 in 172.16.2.49:47749 idle 0:00:00 Bytes 5691 flags UIO
+TCP out 121.54.32.148:40636 in 172.16.2.49:42765 idle 0:01:19 Bytes 0 flags saA
+TCP out 121.54.32.148:40636 in 172.16.2.49:42775 idle 0:01:16 Bytes 0 flags saA
+
+
